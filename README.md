@@ -31,6 +31,7 @@ php artisan key:generate
 ## URL 
 - 開発環境：http://localhost
 - phpMyAdmin:：http://localhost:8080/
+- mailhog:http://localhost:8025/
 
 ## 使用技術（実行環境）
 - PHP 8.1.34
