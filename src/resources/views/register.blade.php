@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
 @endsection
 @section('content')
-<form class="form" action="" method="post">
+<form class="form" action="/register" method="post">
         @csrf
         <div class="register-form">
             <div class="register-form__title">
@@ -53,12 +53,12 @@
                     <label>確認用パスワード</label>
                 </div>
                 <div>
-                    <input type="password" name="password" value="">
+                    <input type="password" name="password_confirmation" value="">
                 </div>
             </div>
             <div class="form__error">
-                @if($errors->has('password'))
-                    <div class="error">{{ $errors->first('password') }}</div>
+                @if($errors->has('password_confirmation'))
+                    <div class="error">{{ $errors->first('password_confirmation') }}</div>
                 @endif
             </div>
             <div class="register-form__btn">

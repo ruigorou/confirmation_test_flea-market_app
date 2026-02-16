@@ -12,27 +12,30 @@
 <body>
     <header>
         <nav class="header__nav">
-            <ul class="header__nav-list">
-                <li class="header__nav-logo">
-                    <a href="/">COACHTECH</a>
-                </li>
-                <div class="header__nav-group">
-                    @if (Route::currentRouteName() === 'login')
-                        <li class="header__nav-item">
-                            <input type="text" placeholder="なにをお探しですか？">
-                        </li>
-                        <li class="header__nav-item">
-                            <a href="/login">ログアウト</a>
-                        </li>
-                        <li class="header__nav-item">
-                            <a href="">マイページ</a>
-                        </li>
-                        <li class="header__nav-item">
-                            <a href="">出品</a>
-                        </li>
-                    @endif
-                </div>
-            </ul>
+            <div class="header__nav-logo">
+                <a href="/">
+                    <input type="image" src="{{ asset('image/COACHTECHヘッダーロゴ.png') }}" alt="ロゴ">
+                </a>
+            </div>
+            <div class="header__nav-group">
+               @auth
+                    <div>
+                        <input class="header__nav-sarch" type="text" placeholder="なにをお探しですか？">
+                    </div>
+                    <div>
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <button class="header__nav-logout" type="submit">ログアウト</button>
+                        </form>
+                    </div>
+                    <div>
+                        <form action="" method="post">
+                            @csrf
+                            <button class="header__nav-mypage" type="submit">マイページ</button>
+                        </form>
+                    </div>
+                @endauth
+            </div>
         </nav>
     </header>
     <main>
