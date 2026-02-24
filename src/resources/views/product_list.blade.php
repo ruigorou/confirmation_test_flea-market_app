@@ -12,15 +12,17 @@
         </div>
     </div>
     <div class="product_list">
-        <div class="product_card">
-            <div class="product_card__img">
-                <a href="">
-                    <img src="" alt="">
-                </a>
+        @foreach ($products as $product)
+            <div class="product_card">
+                <div class="product_card__img">
+                    <a href="">
+                        <img src="{{ asset('/storage/image/' . $product->image) }}" alt="">
+                    </a>
+                </div>
+                <div class="product_card__title">
+                    <p>{{ $product->product_name }}</p>
+                </div>
             </div>
-        </div>
-        <div class="product_card__title">
-            <p>商品名</p>
-        </div>
+        @endforeach
     </div>
 @endsection

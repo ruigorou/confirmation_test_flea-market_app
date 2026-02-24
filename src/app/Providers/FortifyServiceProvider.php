@@ -3,11 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
-use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Cache\RateLimiting\Limit;
 use Laravel\Fortify\Contracts\LogoutResponse;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -24,20 +24,46 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        //メール認証
+        // Fortify::verifyEmailView(function () {
+        //     return view('auth.verify-email');
+        // });
 
         Fortify::loginView(function () {
             return view('auth.login');
         });
 
-        RateLimiter::for('login', function (Request $request) {
-            return Limit::perMinute(5);
-        });
 
         $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
         public function toResponse($request)
         {
             return redirect('/login');
         }
+        });
+
+        Fortify::authenticateUsing(function (Request $request) {
+
+        $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+            ], [
+                'email.required' => 'メールアドレスを入力してください',
+                'email.email' => 'メールアドレスはメール形式で入力してください',
+                'password.required' => 'パスワードを入力してください',
+            ]);
+
+            if (Auth::attempt($request->only('email', 'password'))) {
+                return Auth::user();
+            }
+
+            return null;
+        });
+
+        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
+            public function toResponse($request)
+            {
+                return redirect('/login');
+            }
         });
     }
 }

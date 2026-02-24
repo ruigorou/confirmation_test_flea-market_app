@@ -1,21 +1,25 @@
 body {
-    max-width: 1540px;
+    margin: 0;
 }
 
-.header__nav {
+.header {
     background: #000;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    padding: 20px;
-    width: 100%;
+    padding: 10px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
-.header__nav-group {
-    display: flex;
-    justify-content: space-between;
-    gap:20px;
-    text-align: center;
+.header__nav-logo {
+    display: inline-block;
+    padding: 10px;
+}
+
+.header__nav-logo input {
+    width: 100%;
 }
 
 .header__nav-logout {
@@ -23,20 +27,38 @@ body {
     background: none;
     color: #fff;
     font-size: 18px;
-    padding-top: 5px;
 }
 
-.header__nav-mypage {
-    border: none;
-    background: none;
+.headerlink-group {
+    display: flex;
+    gap: 30px;
+    padding-top: 10px;
+    margin: 0 20px;
+}
+
+.headerlink-group__mypage {
+    text-decoration: none;
     color: #fff;
     font-size: 18px;
     padding-top: 5px;
 }
 
-.header__nav-sarch {
-    padding: 10px 0;
-    width: 350px;
-    margin-right: 100px;
+.search {
+    max-width: 500px;
+    width: 100%;
+    padding: 10px;
+}
+
+.search__box {
+    width: 100%;
+    padding: 10px;
+}
+
+.header__listing {
+    background: #fff;
+    text-decoration: none;
+    padding: 5px 20px;
     border-radius: 4px;
 }
+
+

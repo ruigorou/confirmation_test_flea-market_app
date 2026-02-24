@@ -1,0 +1,76 @@
+.profile-setting-form{
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.profile-setting-title  {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+    margin-bottom: 30px
+}
+
+.image-group {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.image-group__image {
+    background: #C0C0C0;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.image_output {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.image_file {
+    display: none;
+}
+
+.label-group {
+    display: inline-block;
+    padding-top: 50%;
+}
+
+.image-label {
+    color: red;
+    border: 1px solid red;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.content-group {
+    margin-bottom: 30px;
+}
+
+.content-group  label {
+    font-weight: bold;
+}
+
+.content-group__input {
+    width: 100%;
+    padding: 10px;
+}
+
+.profile-setting-form__button {
+    background: #ff0000;
+    color: #fff;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}

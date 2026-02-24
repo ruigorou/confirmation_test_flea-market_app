@@ -10,33 +10,31 @@
     @yield('css')
 </head>
 <body>
-    <header>
-        <nav class="header__nav">
-            <div class="header__nav-logo">
-                <a href="/">
-                    <input type="image" src="{{ asset('image/COACHTECHヘッダーロゴ.png') }}" alt="ロゴ">
-                </a>
+    <header class="header">
+        <div class="header__nav-logo">
+            <a href="/">
+                <input type="image" src="{{ asset('image/COACHTECHヘッダーロゴ.png') }}" alt="ロゴ">
+            </a>
+        </div>
+        @auth
+            <div class="search">
+                <input class="search__box" type="text" placeholder="なにをお探しですか？">
             </div>
-            <div class="header__nav-group">
-               @auth
-                    <div>
-                        <input class="header__nav-sarch" type="text" placeholder="なにをお探しですか？">
-                    </div>
-                    <div>
-                        <form action="{{ route('logout') }}" method="post">
-                            @csrf
-                            <button class="header__nav-logout" type="submit">ログアウト</button>
-                        </form>
-                    </div>
-                    <div>
-                        <form action="" method="post">
-                            @csrf
-                            <button class="header__nav-mypage" type="submit">マイページ</button>
-                        </form>
-                    </div>
-                @endauth
+            <div class="headerlink-group">
+                <div>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button class="header__nav-logout" type="submit">ログアウト</button>
+                </form>
+                </div>
+                <div>
+                    <a class="headerlink-group__mypage" href="">マイページ</a>
+                </div>
+                <div>
+                    <a class="header__listing" href="">出品</a>
+                </div>
             </div>
-        </nav>
+        @endauth
     </header>
     <main>
         @yield('content')

@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @endsection
 @section('content')
-<form class="form" action="" method="post">
+<form class="form" action="{{ route('login') }}" method="post" novalidate>
         @csrf
         <div class="login-form">
             <div class="login-form__title">
@@ -14,20 +14,20 @@
                     <label>メールアドレス</label>
                 </div>
                 <div>
-                    <input type="text" name="email" value="{{ old('email') }}">
+                    <input type="email" name="email" value="{{ old('email') }}" >
                 </div>
             </div>
-            <div class="form__error">
-                @foreach($errors->get('email') as $error)
-                    <div>{{ $error }}</div>
-                @endforeach
-            </div>
+            @if ($errors->has('email'))
+                <div class="form__error">
+                    {{ $errors->first('email') }}
+                </div>
+            @endif
             <div class="login-form__group">
                 <div>
                     <label>パスワード</label>
                 </div>
                 <div>
-                    <input type="password" name="password" value="">
+                    <input type="password" name="password">
                 </div>
             </div>
             <div class="form__error">
