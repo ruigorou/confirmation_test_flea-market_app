@@ -38,7 +38,7 @@ class ProfileRequest extends FormRequest
             'name.required' => 'お名前を入力してください',
             'name.max' => '20文字以内で入力してください',
             'post.required' => '郵便番号を入力してください',
-            'post.min' => 'ハイフンを含め8文字以内で入力してください',
+            'post.min' => 'ハイフンを含め8文字で入力してください',
             'address.required' => '住所を入力してください',
         ];
     }

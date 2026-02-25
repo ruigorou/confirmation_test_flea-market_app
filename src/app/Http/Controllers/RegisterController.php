@@ -39,7 +39,7 @@ class RegisterController extends Controller
 
     public function profile_setting(ProfileRequest $request) {
         $this->create_profile( $request);
-        return redirect('/');
+        return redirect('/item');
     }
 
     private function create_profile(ProfileRequest $request) {
