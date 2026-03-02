@@ -18,8 +18,8 @@ class Product extends Model
         'condition',
     ];
 
-    public function categories() {
-        return $this->belongsToMany(ProductCategory::class);
+    public function product_categories() {
+        return $this->belongsToMany(ProductCategory::class, 'product_product_category');
     }
 }
 

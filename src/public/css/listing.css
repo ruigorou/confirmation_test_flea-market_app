@@ -1,0 +1,11 @@
+.listingform {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.image-group__image {
+    border: 2px solid #000;
+    width: 100%;
+    height: 150px;
+}

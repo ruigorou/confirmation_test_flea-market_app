@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Product;
-
+use Illuminate\Support\Facades\DB;
 class ProductsSeeder extends Seeder
 {
     /**
@@ -17,7 +17,7 @@ class ProductsSeeder extends Seeder
         $products = [
             [
                 'product_name' => '腕時計',
-                'price' => 1500,
+                'price' =>  1500,
                 'brand' => 'Rolax',
                 'product_description' => 'スタイリッシュなデザインのメンズ腕時計',
                 'image' => 'ArmaniMensClock.jpg',
@@ -97,8 +97,55 @@ class ProductsSeeder extends Seeder
             ],
         ];
 
-        foreach ($products as $product) {
-            Product::create($product);
+        DB::table('products')->insert($products);
+        $product_categories = [
+            [
+                'product_id' => 1,
+                'product_category_id' => [1, 5]
+            ],
+            [
+                'product_id' => 2,
+                'product_category_id' => [2]
+            ],
+            [
+                'product_id' => 3,
+                'product_category_id' => [10]
+            ],
+            [
+                'product_id' => 4,
+                'product_category_id' => [1, 5]
+            ],
+            [
+                'product_id' => 5,
+                'product_category_id' => [2]
+            ],
+            [
+                'product_id' => 6,
+                'product_category_id' => [2]
+            ],
+            [
+                'product_id' => 7,
+                'product_category_id' => [1, 4]
+            ],
+            [
+                'product_id' => 8,
+                'product_category_id' => [5]
+            ],
+            [
+                'product_id' => 9,
+                'product_category_id' => [3]
+            ],
+            [
+                'product_id' => 10,
+                'product_category_id' => [4, 6]
+            ]
+        ];
+
+        foreach($product_categories as $product_category) {
+            $product = Product::find($product_category['product_id']);
+            if ($product) {
+                $product->product_categories()->attach($product_category['product_category_id']);
+            }
         }
     }
 }

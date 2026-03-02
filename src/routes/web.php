@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\itemController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserLoginController;
+use App\Http\Controllers\SellController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 //----------未ログイン----------
-Route::get('/', [itemController::class, 'top']);
+Route::get('/', [ItemController::class, 'top']);
+Route::get('item/{item_id}', [ItemController::class, 'detail'])->name('item.detail');
 
 //-------register------
 Route::get('/register', [RegisterController::class, 'register']);
@@ -22,6 +24,10 @@ Route::post('/login', [UserLoginController::class, 'login'])->name('login');
 Route::middleware('auth')->group(function () {
     //-------item------------
     Route::get('/item', [itemController::class, 'index'])->name('item');
+
+    //----------listing---------
+    Route::get('/sell', [SellController::class, 'listing'])->name('sell');
+    Route::post('/sell', [SellController::class, 'product_listing'])->name('selll.listing');
 });
 
 // // プロフィール画面に移行

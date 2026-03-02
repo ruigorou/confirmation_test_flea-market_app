@@ -31,7 +31,7 @@
                     <a class="headerlink-group__mypage" href="">マイページ</a>
                 </div>
                 <div>
-                    <a class="header__listing" href="">出品</a>
+                    <a class="header__listing" href="{{ route('sell') }}">出品</a>
                 </div>
             </div>
         @endauth
