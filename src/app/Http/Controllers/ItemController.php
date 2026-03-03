@@ -14,8 +14,12 @@ class ItemController extends Controller
     }
 
     public function detail ($item_id) {
-        $product = Product::with('product_categories')->findOrFail($item_id);
+        $product = Product::with('product_categories')
+            ->withCount('likes')
+            ->findOrFail($item_id);
+
         $product_categories = $product->product_categories;
+
         return view('product_detail', compact('product', 'product_categories'));
     }
     

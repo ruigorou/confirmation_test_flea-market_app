@@ -22,6 +22,11 @@ body {
     width: 100%;
 }
 
+.headerlink-group__login {
+    text-decoration: none;
+    color: #fff;
+}
+
 .header__nav-logout {
     border: none;
     background: none;
@@ -44,7 +49,7 @@ body {
 }
 
 .search {
-    max-width: 300px;
+    max-width: 400px;
     width: 100%;
     padding: 10px;
 }

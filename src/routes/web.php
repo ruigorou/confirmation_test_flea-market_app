@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\SellController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 //----------未ログイン----------
@@ -21,6 +22,8 @@ Route::post('/mypage/profile_setting', [RegisterController::class, 'profile_sett
 
 //---------login-------
 Route::post('/login', [UserLoginController::class, 'login'])->name('login');
+
+//-----------------ログイン後-------------------
 Route::middleware('auth')->group(function () {
     //-------item------------
     Route::get('/item', [itemController::class, 'index'])->name('item');
@@ -28,6 +31,10 @@ Route::middleware('auth')->group(function () {
     //----------listing---------
     Route::get('/sell', [SellController::class, 'listing'])->name('sell');
     Route::post('/sell', [SellController::class, 'product_listing'])->name('selll.listing');
+
+    Route::post('item/{item_id}', [LikeController::class, 'toggle'])
+    ->middleware('auth')
+    ->name('products.like');
 });
 
 // // プロフィール画面に移行

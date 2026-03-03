@@ -20,6 +20,7 @@
             <div class="logo-group">
                 <div>
                     <img class="logo-group__item" src="{{ asset('image/ハートロゴ_デフォルト.png') }}" alt="ハートロゴ">
+                    <p>{{ $product->likes_count }}</p>
                 </div>
                 <div>
                     <img class="logo-group__item" src="{{ asset('image/ふきだしロゴ.png') }}" alt="吹き出し">

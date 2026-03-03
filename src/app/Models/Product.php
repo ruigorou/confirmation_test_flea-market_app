@@ -21,5 +21,15 @@ class Product extends Model
     public function product_categories() {
         return $this->belongsToMany(ProductCategory::class, 'product_product_category');
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function likedUsers()
+    {
+        return $this->belongsToMany(User::class, 'likes');
+    }
 }
 

@@ -12,7 +12,7 @@
 <body>
     <header class="header">
         <div class="header__nav-logo">
-            <a href="/">
+            <a href="/item">
                 <input type="image" src="{{ asset('image/COACHTECHヘッダーロゴ.png') }}" alt="ロゴ">
             </a>
         </div>
