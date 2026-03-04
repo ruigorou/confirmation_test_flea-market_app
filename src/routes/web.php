@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserLoginController;
@@ -16,17 +17,17 @@ Route::get('item/{item_id}', [ItemController::class, 'detail'])->name('item.deta
 Route::get('/register', [RegisterController::class, 'register']);
 Route::post('/register', [RegisterController::class, 'store']);
 
-//--------profile-------
-Route::get('/mypage/profile_setting', [RegisterController::class, 'setting_index'])->name('mypage.profile_setting');
-Route::post('/mypage/profile_setting', [RegisterController::class, 'profile_setting']);
-
 //---------login-------
 Route::post('/login', [UserLoginController::class, 'login'])->name('login');
 
 //-----------------ログイン後-------------------
 Route::middleware('auth')->group(function () {
+    //--------- profile -------
+    Route::get('/mypage/profile', [ProfileController::class, 'profile'])->name('profile');
+    Route::post('/mypage/profile', [ProfileController::class, 'profile_create'])->name('profile.create');
+
     //-------item------------
-    Route::get('/item', [itemController::class, 'index'])->name('item');
+    Route::get('/item', [ItemController::class, 'index'])->name('item');
 
     //----------listing---------
     Route::get('/sell', [SellController::class, 'listing'])->name('sell');
