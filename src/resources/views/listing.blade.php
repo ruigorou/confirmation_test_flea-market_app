@@ -3,26 +3,120 @@
     <link rel="stylesheet" href="{{ asset('css/listing.css') }}">
 @endsection
 @section('content')
-    <h2>商品の出品</h2>
+    <div class="listing-title">
+        <h1>商品の出品</h1>
+    </div>
     <form class="listingform" action="{{ route('selll.listing') }}" method="post">
-         <div class="image-group">
-            <div>
+         <div class="content-group">
+            <div class="content-group__title">
                 <label>商品画像</label>
             </div>
-            <div class="image-group__image">
-                <img class="image_output" id="image_output">
+            <div class="image-group">
+                <div class="label-group">
+                    <label class="label-group__label" for="profile_image">画像を選択する</label>
+                </div>
+                <div>
+                    <input class="image_file" type="file" id="profile_image" name="image">
+                </div>
             </div>
             <div>
-                <div class="label-group">
-                    <label class="image-label" for="profile_image">ファイルの選択</label>
-                </div>
-                <input class="image_file" type="file" id="profile_image" name="image">
+                @if ($errors->has('image'))
+                    <div class="form__error">
+                        {{ $errors->first('image') }}
+                    </div>
+                @endif
             </div>
         </div>
-         @if ($errors->has('image'))
-            <div class="form__error">
-                {{ $errors->first('image') }}
+        <div class="product-title">
+            <label>商品の詳細</label>
+        </div>
+        <div>
+            <div class="category-title">
+                <label class="category-title__label">カテゴリー</label>
             </div>
-        @endif
+            <div class="category-group">
+                @foreach ($categories as $category)
+                    <label class="category-item">
+                        <input type="checkbox" name="category_id[{{ $category->id }}]">{{ $category->category }}
+                    </label>
+                @endforeach
+            </div>
+            <div class="form__error">
+                @if($errors->has(''))
+                    <div class="error">{{ $errors->first('') }}</div>
+                @endif
+            </div>
+        </div>
+        <div class="condition-group">
+            <label class="condition-group__title">商品の状態</label>
+        </div>
+        <div>
+            <select class="condition-select">
+                <option value="">選択してください</option>
+                @foreach ($conditions as $condition )
+                    <option class="condition-select__option" value="{{ $condition->id }}">{{ $condition->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form__error">
+            @if($errors->has(''))
+                <div class="error">{{ $errors->first('') }}</div>
+            @endif
+        </div>
+        <div class="product-title">
+            <label>商品名と説明</label>
+        </div>
+        <div class="product-group">
+            <div class="product-label-group">
+                <label class="product-label-group__label">商品名</label>
+            </div>
+            <div>
+                <input class="product-label" type="text" name="product_name">
+            </div>
+            <div class="form__error">
+                @if($errors->has(''))
+                    <div class="error">{{ $errors->first('') }}</div>
+                @endif
+            </div>
+        </div>
+        <div class="product-group">
+            <div class="product-label-group">
+                <label class="product-label-group__label">ブランド名</label>
+            </div>
+            <div>
+                <input class="product-label" type="text" name="brand" value="">
+            </div>
+            <div class="form__error">
+                @if($errors->has(''))
+                    <div class="error">{{ $errors->first('') }}</div>
+                @endif
+            </div>
+        </div>
+        <div class="product-group">
+            <div class="product-label-group">
+                <label class="product-label-group__label">商品の説明</label>
+            </div>
+            <div>
+                <textarea class="product-group__textarea" name="product_description" id=""></textarea>
+            </div>
+            <div class="form__error">
+                @if($errors->has(''))
+                    <div class="error">{{ $errors->first('') }}</div>
+                @endif
+            </div>
+        </div>
+        <div class="product-group">
+            <div class="product-label-group">
+                <label class="product-label-group__label">販売価格</label>
+            </div>
+            <div>
+                <input class="product-label" type="text" name="price" value="￥">
+            </div>
+            <div class="form__error">
+                @if($errors->has(''))
+                    <div class="error">{{ $errors->first('') }}</div>
+                @endif
+            </div>
+        </div>
     </form>
 @endsection

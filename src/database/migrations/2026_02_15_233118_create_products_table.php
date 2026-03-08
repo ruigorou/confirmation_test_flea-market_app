@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('brand')->nullable();
             $table->string('product_description');
             $table->string('image');
-            $table->text('condition');
+            $table->foreignId('condition_id')->constrained('conditions')->cascadeOnDelete();
             $table->timestamps();
         });
     }

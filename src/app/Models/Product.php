@@ -15,11 +15,16 @@ class Product extends Model
         'brand',
         'product_description',
         'image',
-        'condition',
+        'condition_id',
     ];
 
     public function product_categories() {
         return $this->belongsToMany(ProductCategory::class, 'product_product_category');
+    }
+
+    public function condition()
+    {
+        return $this->belongsTo(Condition::class);
     }
 
     public function likes()
