@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
 
     //----------listing---------
     Route::get('/sell', [SellController::class, 'listing'])->name('sell');
-    Route::post('/sell', [SellController::class, 'product_listing'])->name('selll.listing');
+    Route::post('/sell/product/listing', [SellController::class, 'product_listing'])->name('sell.listing');
 
     Route::post('item/{item_id}', [LikeController::class, 'toggle'])
     ->middleware('auth')

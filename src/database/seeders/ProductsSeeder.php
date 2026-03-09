@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 class ProductsSeeder extends Seeder
 {
@@ -21,7 +22,8 @@ class ProductsSeeder extends Seeder
                 'brand' => 'Rolax',
                 'product_description' => 'スタイリッシュなデザインのメンズ腕時計',
                 'image' => 'ArmaniMensClock.jpg',
-                'condition_id' => 1
+                'condition_id' => 1,
+                'user_id' => User::inRandomOrder()->first()->id,
             ],
             [
                 'product_name' => 'HDD',
@@ -29,7 +31,8 @@ class ProductsSeeder extends Seeder
                 'price' => 5000,
                 'product_description' => '高速で信頼性の高いハードディスク',
                 'image' => 'HDDHardDisk.jpg',
-                'condition_id' => 2
+                'condition_id' => 2,
+                'user_id' => User::inRandomOrder()->first()->id,
             ],
             [
                 'product_name' => '玉ねぎ３束',
@@ -37,7 +40,8 @@ class ProductsSeeder extends Seeder
                 'brand' => 'なし',
                 'product_description' => '新鮮な玉ねぎ３束のセット',
                 'image' => 'iLoveIMGd.jpg',
-                'condition_id' => 3
+                'condition_id' => 3,
+                'user_id' => User::inRandomOrder()->first()->id,
             ],
             [
                 'product_name' => '革靴',
@@ -45,7 +49,8 @@ class ProductsSeeder extends Seeder
                 'brand' => '',
                 'product_description' => 'クラッシックなデザインの革靴',
                 'image' => 'LeatherShoesProductPhoto.jpg',
-                'condition_id' => 4
+                'condition_id' => 4,
+                'user_id' => User::inRandomOrder()->first()->id,
             ],
             [
                 'product_name' => 'ノートPC',
@@ -53,7 +58,8 @@ class ProductsSeeder extends Seeder
                 'brand' => '',
                 'product_description' => '高性能なノートパソコン',
                 'image' => 'LivingRoomLaptop.jpg',
-                'condition_id' => 1
+                'condition_id' => 1,
+                'user_id' => User::inRandomOrder()->first()->id,
             ],
             [
                 'product_name' => 'マイク',
@@ -61,7 +67,8 @@ class ProductsSeeder extends Seeder
                 'brand' => 'なし',
                 'product_description' => '高品質のレコーディング用マイク',
                 'image' => 'MusicMic4632231.jpg',
-                'condition_id' => 2
+                'condition_id' => 2,
+                'user_id' => User::inRandomOrder()->first()->id,
             ],
             [
                 'product_name' => 'ショルダーバッグ',
@@ -69,7 +76,8 @@ class ProductsSeeder extends Seeder
                 'brand' => '',
                 'product_description' => 'おしゃれなショルダーバッグ',
                 'image' => 'Pursefashionpocket.jpg',
-                'condition_id' => 3
+                'condition_id' => 3,
+                'user_id' => User::inRandomOrder()->first()->id,
             ],
             [
                 'product_name' => 'タンブラー',
@@ -77,7 +85,8 @@ class ProductsSeeder extends Seeder
                 'brand' => 'なし',
                 'product_description' => 'おしゃれなショルダーバッグ',
                 'image' => 'Tumblersouvenir.jpg',
-                'condition_id' => 4
+                'condition_id' => 4,
+                'user_id' => User::inRandomOrder()->first()->id,
             ],
             [
                 'product_name' => 'コーヒーミル',
@@ -85,7 +94,8 @@ class ProductsSeeder extends Seeder
                 'brand' => 'Starbacks',
                 'product_description' => '手動のコーヒーミル',
                 'image' => 'WaitresswithCoffeeGrinder.jpg',
-                'condition_id' => 1
+                'condition_id' => 1,
+                'user_id' => User::inRandomOrder()->first()->id,
             ],
             [
                 'product_name' => 'メイクセット',
@@ -93,7 +103,9 @@ class ProductsSeeder extends Seeder
                 'brand' => '',
                 'product_description' => '便利なメイクアップセット',
                 'image' => '外出メイクアップセット.jpg',
-                'condition_id' => 2
+                'condition_id' => 2,
+                'user_id' => User::inRandomOrder()->first()->id,
+
             ],
         ];
 

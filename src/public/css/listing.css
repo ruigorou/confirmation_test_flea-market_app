@@ -13,7 +13,8 @@
 .listingform {
     max-width: 600px;
     width: 100%;
-    height: auto;
+    max-height: auto;
+    height: 100%;
     margin: 0 auto;
 }
 
@@ -21,11 +22,25 @@
     font-weight: bold;
     font-size: 20px;
 }
+
+.image-group__image {
+    max-width: 250px;
+    max-height: 200px;
+}
+
+.image_output {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 .image-group {
     border: 2px solid #dcdcdc;
     width: 100%;
-    height: 150px;
+    height: auto;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .label-group {
@@ -124,4 +139,19 @@
 .product-group__textarea {
     width: 100%;
     height: 150px;
+}
+
+.button-group {
+    margin: 50px auto;
+    width: 100%;
+}
+
+.listing-submit {
+    width: 100%;
+    background: #ff0000;
+    border: none;
+    padding: 10px 0;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 8px;
 }

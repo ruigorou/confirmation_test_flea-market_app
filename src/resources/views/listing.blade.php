@@ -6,12 +6,19 @@
     <div class="listing-title">
         <h1>商品の出品</h1>
     </div>
-    <form class="listingform" action="{{ route('selll.listing') }}" method="post">
+    <form class="listingform" action="{{ route('sell.listing') }}" method="post" enctype="multipart/form-data">
+         @csrf
          <div class="content-group">
             <div class="content-group__title">
                 <label>商品画像</label>
             </div>
             <div class="image-group">
+                @php
+                    $profile = $profile ?? null;
+                @endphp
+                <div class="image-group__image">
+                    <img class="image_output" id="image_output" src="{{ $profile?->image ? asset('storage/image/' .  $profile->image) : ''}}">
+                </div>
                 <div class="label-group">
                     <label class="label-group__label" for="profile_image">画像を選択する</label>
                 </div>
@@ -37,7 +44,7 @@
             <div class="category-group">
                 @foreach ($categories as $category)
                     <label class="category-item">
-                        <input type="checkbox" name="category_id[{{ $category->id }}]">{{ $category->category }}
+                        <input type="checkbox" name="category_id[]" value="{{$category->id}}">{{ $category->category }}
                     </label>
                 @endforeach
             </div>
@@ -51,7 +58,7 @@
             <label class="condition-group__title">商品の状態</label>
         </div>
         <div>
-            <select class="condition-select">
+            <select class="condition-select" name="condition_id">
                 <option value="">選択してください</option>
                 @foreach ($conditions as $condition )
                     <option class="condition-select__option" value="{{ $condition->id }}">{{ $condition->name }}</option>
@@ -118,5 +125,10 @@
                 @endif
             </div>
         </div>
+        <div class="button-group">
+            <input type="hidden" value="{{ $user_id }}">
+            <button class="listing-submit">出品する</button>
+        </div>
     </form>
+    <script src="{{ asset('js/image_call.js')}}"></script>
 @endsection

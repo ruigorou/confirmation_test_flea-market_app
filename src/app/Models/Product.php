@@ -36,5 +36,10 @@ class Product extends Model
     {
         return $this->belongsToMany(User::class, 'likes');
     }
+
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
 }
 
