@@ -18,7 +18,23 @@ class SellController extends Controller
     }
 
     public function product_listing(Request $request) {
-        dd($request->category_id);
+       $data = $request->only([
+            'product_name',
+            'price',
+            'brand',
+            'product_description',
+            'condition_id',
+        ]);
+        
+        $data['user_id'] = auth()->id();
+
+        if ($request->hasFile('image')) { 
+            $path = $request->file('image')->store('public/image');
+            $data['image'] = basename($path);
+        }
+        Product::create($data);
+
         return redirect()->route('item');
+    
     }
 }

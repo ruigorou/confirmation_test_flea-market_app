@@ -58,7 +58,7 @@
                     <p class="product-condition-group__title">商品の状態</p>
                 </div>
                 <div>
-                    <p class="product-condition-group__condition">{{ $product->condition }}</p>
+                    <p class="product-condition-group__condition">{{ $product->condition->name }}</p>
                 </div>
             </div>
             <div>

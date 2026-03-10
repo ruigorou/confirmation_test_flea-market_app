@@ -11,8 +11,8 @@
             マイリスト
         </div>
     </div>
-    <div class="product_list">
-        <form action="">
+    <form action=""></form>
+        <div class="product_list">
             @foreach ($products as $product)
                 <div class="product_card">
                     <div class="product_card__img">
@@ -25,6 +25,6 @@
                     </div>
                 </div>
             @endforeach
-        </form>
-    </div>
+        </div>
+    </form>
 @endsection

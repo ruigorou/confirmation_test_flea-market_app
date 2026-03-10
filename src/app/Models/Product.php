@@ -16,6 +16,7 @@ class Product extends Model
         'product_description',
         'image',
         'condition_id',
+        'user_id',
     ];
 
     public function product_categories() {

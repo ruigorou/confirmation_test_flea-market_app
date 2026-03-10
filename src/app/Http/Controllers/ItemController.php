@@ -14,7 +14,7 @@ class ItemController extends Controller
     }
 
     public function detail ($item_id) {
-        $product = Product::with('product_categories')
+        $product = Product::with('product_categories', 'condition')
             ->withCount('likes')
             ->findOrFail($item_id);
 
@@ -26,6 +26,6 @@ class ItemController extends Controller
     //--------ログイン後----------
      public function index () {
         $products = Product::all();
-        return view('product_list', compact('products'));
+        return view('product_mylist', compact('products'));
     }
 }

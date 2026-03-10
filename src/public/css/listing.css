@@ -39,8 +39,6 @@
     width: 100%;
     height: auto;
     text-align: center;
-    display: flex;
-    justify-content: center;
 }
 
 .label-group {
@@ -50,6 +48,7 @@
     color: red;
     border-radius: 8px;
     padding: 5px;
+    height: 40px;
 }
 
 .image_file {

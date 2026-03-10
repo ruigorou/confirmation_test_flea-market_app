@@ -13,12 +13,7 @@
                 <label>商品画像</label>
             </div>
             <div class="image-group">
-                @php
-                    $profile = $profile ?? null;
-                @endphp
-                <div class="image-group__image">
-                    <img class="image_output" id="image_output" src="{{ $profile?->image ? asset('storage/image/' .  $profile->image) : ''}}">
-                </div>
+                <img class="image_output" id="image_output">
                 <div class="label-group">
                     <label class="label-group__label" for="profile_image">画像を選択する</label>
                 </div>
@@ -49,8 +44,8 @@
                 @endforeach
             </div>
             <div class="form__error">
-                @if($errors->has(''))
-                    <div class="error">{{ $errors->first('') }}</div>
+                @if($errors->has('category_id[]'))
+                    <div class="error">{{ $errors->first('category_id[]') }}</div>
                 @endif
             </div>
         </div>
@@ -61,13 +56,13 @@
             <select class="condition-select" name="condition_id">
                 <option value="">選択してください</option>
                 @foreach ($conditions as $condition )
-                    <option class="condition-select__option" value="{{ $condition->id }}">{{ $condition->name }}</option>
+                    <option class="condition-select__option" value="{{ $condition->id }} {{old('condition_id')==$condition->id ? 'selected' : ''}}"> {{ $condition->name }}</option>
                 @endforeach
             </select>
         </div>
         <div class="form__error">
-            @if($errors->has(''))
-                <div class="error">{{ $errors->first('') }}</div>
+            @if($errors->has('condition_id'))
+                <div class="error">{{ $errors->first('condition_id') }}</div>
             @endif
         </div>
         <div class="product-title">
@@ -81,8 +76,8 @@
                 <input class="product-label" type="text" name="product_name">
             </div>
             <div class="form__error">
-                @if($errors->has(''))
-                    <div class="error">{{ $errors->first('') }}</div>
+                @if($errors->has('product_name'))
+                    <div class="error">{{ $errors->first('product_name') }}</div>
                 @endif
             </div>
         </div>
@@ -94,8 +89,8 @@
                 <input class="product-label" type="text" name="brand" value="">
             </div>
             <div class="form__error">
-                @if($errors->has(''))
-                    <div class="error">{{ $errors->first('') }}</div>
+                @if($errors->has('brand'))
+                    <div class="error">{{ $errors->first('brand') }}</div>
                 @endif
             </div>
         </div>
@@ -104,11 +99,11 @@
                 <label class="product-label-group__label">商品の説明</label>
             </div>
             <div>
-                <textarea class="product-group__textarea" name="product_description" id=""></textarea>
+                <textarea class="product-group__textarea" name="product_description"></textarea>
             </div>
             <div class="form__error">
-                @if($errors->has(''))
-                    <div class="error">{{ $errors->first('') }}</div>
+                @if($errors->has('product_description'))
+                    <div class="error">{{ $errors->first('product_description') }}</div>
                 @endif
             </div>
         </div>
@@ -117,16 +112,19 @@
                 <label class="product-label-group__label">販売価格</label>
             </div>
             <div>
-                <input class="product-label" type="text" name="price" value="￥">
+                <div>
+                    <span>￥</span>
+                    <input class="product-label" type="text" name="price" value="{{ old('price') }}">
+                </div>
+                
             </div>
             <div class="form__error">
-                @if($errors->has(''))
-                    <div class="error">{{ $errors->first('') }}</div>
+                @if($errors->has('price'))
+                    <div class="error">{{ $errors->first('price') }}</div>
                 @endif
             </div>
         </div>
         <div class="button-group">
-            <input type="hidden" value="{{ $user_id }}">
             <button class="listing-submit">出品する</button>
         </div>
     </form>
