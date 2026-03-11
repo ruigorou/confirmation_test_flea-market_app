@@ -39,13 +39,13 @@
             <div class="category-group">
                 @foreach ($categories as $category)
                     <label class="category-item">
-                        <input type="checkbox" name="category_id[]" value="{{$category->id}}">{{ $category->category }}
+                        <input type="checkbox" name="category_id[]" value="{{$category->id}}"  {{ in_array($category->id, old('category_id', [])) ? 'checked' : '' }}>{{ $category->category }}
                     </label>
                 @endforeach
             </div>
             <div class="form__error">
-                @if($errors->has('category_id[]'))
-                    <div class="error">{{ $errors->first('category_id[]') }}</div>
+                @if($errors->has('category_id'))
+                    <div class="error">{{ $errors->first('category_id') }}</div>
                 @endif
             </div>
         </div>
@@ -113,7 +113,6 @@
             </div>
             <div>
                 <div>
-                    <span>￥</span>
                     <input class="product-label" type="text" name="price" value="{{ old('price') }}">
                 </div>
                 

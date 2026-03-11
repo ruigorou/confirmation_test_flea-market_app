@@ -28,7 +28,7 @@
                 </form>
                 </div>
                 <div>
-                    <a class="headerlink-group__mypage" href="{{ route('profile') }}">マイページ</a>
+                    <a class="headerlink-group__mypage" href="{{ route('mypage') }}">マイページ</a>
                 </div>
                 <div>
                     <a class="header__listing" href="{{ route('sell') }}">出品</a>

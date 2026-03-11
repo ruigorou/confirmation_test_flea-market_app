@@ -7,6 +7,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MypageController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 //----------未ログイン----------
@@ -32,6 +33,9 @@ Route::middleware('auth')->group(function () {
     //----------listing---------
     Route::get('/sell', [SellController::class, 'listing'])->name('sell');
     Route::post('/sell/product/listing', [SellController::class, 'product_listing'])->name('sell.listing');
+
+    //---------mypage-----------
+    Route::get('/mypage', [MypageController::class, 'listed_item'])->name('mypage');
 
     Route::post('item/{item_id}', [LikeController::class, 'toggle'])
     ->middleware('auth')

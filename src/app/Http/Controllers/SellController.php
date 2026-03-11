@@ -7,6 +7,7 @@ use App\Models\ProductCategory;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ExhibitionRequest;
 
 class SellController extends Controller
 {
@@ -17,7 +18,7 @@ class SellController extends Controller
         return view('listing', compact( 'conditions',  'categories', 'user_id'));
     }
 
-    public function product_listing(Request $request) {
+    public function product_listing(ExhibitionRequest $request) {
        $data = $request->only([
             'product_name',
             'price',
@@ -34,7 +35,7 @@ class SellController extends Controller
         }
         Product::create($data);
 
-        return redirect()->route('item');
+        return redirect()->route('mypage');
     
     }
 }
