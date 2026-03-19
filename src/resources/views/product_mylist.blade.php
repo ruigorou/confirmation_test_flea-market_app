@@ -16,7 +16,7 @@
             @foreach ($products as $product)
                 <div class="product_card">
                     <div class="product_card__img">
-                        <a href="">
+                        <a href="{{ route('item.detail', $product->id) }}">
                             <img src="{{ asset('/storage/image/' . $product->image) }}" alt="">
                         </a>
                     </div>

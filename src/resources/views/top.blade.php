@@ -16,7 +16,7 @@
             <div class="product_card">
                 <div class="product_card__img">
                     <a href="{{ route('item.detail', $product->id)}}">
-                        <img src="{{ asset('/storage/image/' . $product->image) }}" alt="">
+                        <img src="{{ asset('/storage/image/' . $product->image) }}">
                     </a>
                 </div>
                 <div class="product_card__title">

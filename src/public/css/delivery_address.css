@@ -1,0 +1,40 @@
+.address-form {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+    margin-bottom: 30px
+}
+
+.address-form__title {
+    width: 100%;
+    text-align: center;
+    margin: 50px 0;
+}
+
+.address-form__label {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.address-form__input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 50px;
+}
+
+.address-form__submit {
+    width: 100%;
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    color: #fff;
+    background: #ff6347;
+    border-radius: 5px;
+    margin-top: 50px;
+}

@@ -8,11 +8,13 @@ use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\ProductPurchaseController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 //----------未ログイン----------
-Route::get('/', [ItemController::class, 'top']);
+Route::get('/', [ItemController::class, 'top'])->name('top');
 Route::get('item/{item_id}', [ItemController::class, 'detail'])->name('item.detail');
+Route::post('/search', [ItemController::class, 'search'])->name('search');
 
 //-------register------
 Route::get('/register', [RegisterController::class, 'register']);
@@ -29,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
     //-------item------------
     Route::get('/item', [ItemController::class, 'index'])->name('item');
+    Route::post('/item', [ItemController::class, 'item_search'])->name('item.search');
 
     //----------listing---------
     Route::get('/sell', [SellController::class, 'listing'])->name('sell');
@@ -36,7 +39,16 @@ Route::middleware('auth')->group(function () {
 
     //---------mypage-----------
     Route::get('/mypage', [MypageController::class, 'listed_item'])->name('mypage');
+    Route::post('/mypage', [MypageController::class, 'search'])->name('mypage.search');
 
+    //---------- Product Purchase --------
+    Route::get('/purchase/{product_id}', [ProductPurchaseController::class, 'purchase'])->name('product.purchase');
+
+    //---------- `delivery address ----------
+    Route::get('purchase/address/{item_id}', [ProductPurchaseController::class, 'delivery_address'])->name('purchase.address');
+    Route::post('purchase/address/{item_id}', [ProductPurchaseController::class, 'address_update'])->name('address.update');
+
+    //--------like -----------
     Route::post('item/{item_id}', [LikeController::class, 'toggle'])
     ->middleware('auth')
     ->name('products.like');

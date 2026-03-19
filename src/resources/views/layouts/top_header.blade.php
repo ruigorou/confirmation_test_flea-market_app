@@ -17,17 +17,20 @@
             </a>
         </div>
         <div class="search">
-            <input class="search__box" type="text" placeholder="なにをお探しですか？">
+             <form action="{{ route('search') }}" method="post">
+                @csrf
+                    <input class="search__box" name="keyword" type="text" placeholder="なにをお探しですか？">
+             </form>
         </div>
         <div class="headerlink-group">
             <div>
                 <a class="headerlink-group__login" href="{{ route('login') }}">ログイン</a>
             </div>
             <div>
-                <a class="headerlink-group__mypage" href="">マイページ</a>
+                <a class="headerlink-group__mypage" href="{{ route('mypage') }}">マイページ</a>
             </div>
             <div>
-                <a class="header__listing" href="">出品</a>
+                <a class="header__listing" href="{{ route('sell') }}">出品</a>
             </div>
         </div>
     </header>

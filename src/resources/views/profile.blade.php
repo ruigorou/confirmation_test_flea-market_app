@@ -29,7 +29,7 @@
                 <label>ユーザー名</label>
             </div>
             <div>
-                <input class="content-group__input" type="text" name="name" value="{{ old('name') }}{{ $user->name }}">
+                <input class="content-group__input" type="text" name="name" value="{{ old('name',  $user->name) }}">
             </div>
              @if ($errors->has('name'))
                 <div class="form__error">
@@ -42,7 +42,7 @@
                 <label>郵便番号</label>
             </div>
             <div>
-                <input class="content-group__input" type="text" name="post" value="{{ old('post') }}{{ $profile->post ?? '' }}">
+                <input class="content-group__input" type="text" name="post" value="{{ old('post', $profile->post) }}">
             </div>
              @if ($errors->has('post'))
                 <div class="form__error">
@@ -55,7 +55,7 @@
                 <label>住所</label>
             </div>
             <div>
-                <input class="content-group__input" type="text" name="address" value="{{ old('address') }}{{ $profile->address ?? '' }}">
+                <input class="content-group__input" type="text" name="address" value="{{ old('address', $profile->address ) }}">
             </div>
              @if ($errors->has('address'))
                 <div class="form__error">
@@ -68,7 +68,7 @@
                 <label>建物名</label>
             </div>
             <div>
-                <input class="content-group__input" type="text" name="building" value="{{ old('building') }}{{ $profile->building ?? '' }}">
+                <input class="content-group__input" type="text" name="building" value="{{ old('building', $profile->building) }}">
             </div>
         </div>
         <div>

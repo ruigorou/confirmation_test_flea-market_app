@@ -22,10 +22,32 @@ class ItemController extends Controller
 
         return view('product_detail', compact('product', 'product_categories'));
     }
+
+    public function search (Request $request) {
+        if(!empty($request->keyword)) {
+            $products = Product::where(
+                'product_name',  'LIKE', '%' . $request->keyword . '%'
+            )->get();
+            return view('top', compact('products'));
+        }else{
+            return redirect()->route('top');
+        }
+    }
     
     //--------ログイン後----------
      public function index () {
-        $products = Product::all();
+        $products = Product::where('user_id', '!=', auth()->id())->get();
         return view('product_mylist', compact('products'));
+    }
+
+    public function item_search(Request $request) {
+        if(!empty($request->keyword)) {
+            $products = Product::where(
+                'product_name',  'LIKE', '%' . $request->keyword . '%'
+            )->get();
+            return view('product_mylist', compact('products'));
+        }else{
+            return redirect()->route('item');
+        }
     }
 }

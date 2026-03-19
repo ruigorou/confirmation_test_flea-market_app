@@ -1,0 +1,154 @@
+.purchase-content {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.left-column-content {
+    margin: 10px;
+    max-width: 700px;
+    width: 100%;
+    gap: 30px;
+}
+
+.product-group {
+    border-bottom: 1px solid #000;
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.product-image__group {
+    max-width: 250px;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.title-group {
+    font-size: 25px;
+    width: 100%;
+}
+
+.title-group__title {
+    font-weight: bold;
+}
+
+
+.right-column-content {
+    max-width: 300px;
+    width: 100%;
+    margin-left: 50px;
+}
+
+.payment {
+    border-bottom: 1px solid #000;
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+.payment-title-group {
+    width: 100%;
+}
+
+.payment-title-group__title {
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 30px;
+}
+
+.payment-select-group {
+    width: 100%;
+}
+
+.payment-select-group__select {
+    max-width: 200px;
+    width: 100%;
+    padding: 5px 10px;
+    margin: 30px 0 0 100px;
+}
+
+.select {
+    background: #C0C0C0;
+}
+
+.shipping {
+    border-bottom: 1px solid #000;
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+.shipping__header {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.shipping__title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.shipping__change-link {
+    text-decoration: none;
+}
+
+.shipping__address {
+    margin: 30px 0 0 100px;
+}
+
+.shipping__post {
+    font-weight: bold;
+}
+
+.shipping__detail {
+    font-weight: bold;
+}
+
+.purchase-summary {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #000;
+    padding: 20px 30px;
+}
+
+.purchase-summary__payment {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #000;
+    border-top: none;
+    padding: 20px 30px;
+}
+
+.purchase-summary__label {
+    display: block;
+    margin: 16px 0;
+    font-size: 16px;
+}
+
+.purchase-summary__value {
+    font-size: 16px;
+}
+
+.purchase-summary__button {
+    text-align: center;
+    width: 100%;
+    margin: 50px auto;
+}
+
+.purchase-summary__purchase-button {
+    border: none;
+    background: red;
+    color: #fff;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+}

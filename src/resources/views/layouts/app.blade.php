@@ -18,7 +18,10 @@
         </div>
         @auth
             <div class="search">
-                <input class="search__box" type="text" placeholder="なにをお探しですか？">
+                <form action="{{ route('item.search') }}" method="post">
+                    @csrf
+                    <input class="search__box" name="keyword" type="text" placeholder="なにをお探しですか？">
+                </form>
             </div>
             <div class="headerlink-group">
                 <div>

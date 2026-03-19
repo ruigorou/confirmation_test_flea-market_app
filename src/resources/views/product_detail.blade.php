@@ -27,8 +27,11 @@
                 </div>
             </div>
             <div>
-                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                <button class="product-content__purchase">購入手続きへ</button>
+                <form action="{{ route('product.purchase', $product->id) }}" method="get">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <button class="product-content__purchase">購入手続きへ</button>
+                </form>
             </div>
             <div>
                 <h2>商品説明</h2>

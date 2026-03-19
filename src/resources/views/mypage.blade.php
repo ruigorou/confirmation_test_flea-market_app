@@ -16,16 +16,22 @@
             <a class="profile__edit-link" href="{{ route('profile') }}">プロフィールを編集</a>
         </div>
     </div>
-    <div>
-        <div>出品した商品</div>
-        <div>購入した商品</div>
+    <div class="item-tabs">
+        <div class="item-tabs__tab--sell">
+            <a class="item-tabs__tab--sell-link" href="{{ route('mypage', ['page' => 'sell']) }}">出品した商品</a>
+        </div>
+        <div class="item-tabs__tab--buy">
+            <div class="item-tabs__tab--sell">
+            <a class="item-tabs__tab--sell-buy" href="{{ route('mypage', ['page' => 'buy']) }}">購入した商品</a>
+        </div>
+        </div>
     </div>
      <div class="product_list">
-            @foreach ($user->products as $product)
+            @foreach ($products as $product)
                 <div class="product_card">
                     <div class="product_card__img">
-                        <a href="">
-                            <img src="{{ asset('/storage/image/' . $product->image) }}" alt="">
+                        <a href="{{ route('item.detail', $product->id) }}">
+                            <img src="{{ asset('/storage/image/' . $product->image) }}">
                         </a>
                     </div>
                     <div class="product_card__title">
