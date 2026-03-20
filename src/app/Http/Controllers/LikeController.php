@@ -5,30 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Like;
 
 class LikeController extends Controller
 {
-    public function toggle(Product $product)
+    public function toggle(Request $request, Product $product)
     {
         $user = Auth::user();
-
-        $like = $product->likes()
-            ->where('user_id', $user->id)
-            ->first();
-
-        if ($like) {
-            $like->delete();
-            $liked = false;
-        } else {
-            $product->likes()->create([
-                'user_id' => $user->id
+        
+        if ($request->has('liked')) {
+            // チェック ON → いいね作成
+            Like::firstOrCreate([
+                'user_id' => $user->id,
+                'product_id' => $product->id
             ]);
-            $liked = true;
+        } else {
+            // チェック OFF → いいね削除
+            Like::where('user_id', $user->id)
+            ->where('product_id', $product->id)
+            ->delete();
         }
 
-        return response()->json([
-            'liked' => $liked,
-            'count' => $product->likes()->count()
-        ]);
+        return redirect()->route('item.detail', $product->id);
     }
+
 }

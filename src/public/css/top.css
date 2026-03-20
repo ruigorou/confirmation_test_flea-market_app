@@ -7,9 +7,25 @@
     border-bottom: 2px solid #000;
 }
 
+.productlist__nav {
+    display: flex;
+    margin-top: 50px;
+    gap: 50px;
+    border-bottom: 1px solid #000;
+    width: 100%;
+    font-size: 20px;
+}
+
+.mylist {
+    border: none;
+    background: none;
+    font-size: 20px;
+}
+
 .recommend {
     text-decoration: none;
     color: red;
+    margin-left: 100px;
 }
 
 .my-list {
@@ -22,7 +38,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     width: 100%;
-    margin: 0 auto;
+    margin: 50px auto;
 }
 
 .product_card {

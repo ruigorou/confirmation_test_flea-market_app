@@ -4,23 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Like;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
     //---------未ログイン----------
     public function top () {
         $products = Product::all();
+        if(auth()->check()) {
+            //------login---------
+            $user = auth()->user();
+            $likedProductIds = Like::where('user_id', $user->id)
+            ->pluck('product_id');
+            $products = Product::whereIn('id', $likedProductIds)->get();
+            return view('product_mylist', compact('products'));
+        }
         return view('top', compact('products'));
     }
 
     public function detail ($item_id) {
+        $user = Auth()->user();
         $product = Product::with('product_categories', 'condition')
             ->withCount('likes')
+            ->withCount('comments')
             ->findOrFail($item_id);
-
         $product_categories = $product->product_categories;
 
-        return view('product_detail', compact('product', 'product_categories'));
+        return view('product_detail', compact('product', 'product_categories', 'user'));
     }
 
     public function search (Request $request) {
@@ -30,14 +41,18 @@ class ItemController extends Controller
             )->get();
             return view('top', compact('products'));
         }else{
-            return redirect()->route('top');
+            return redirect()->route('mylist');
         }
     }
     
     //--------ログイン後----------
-     public function index () {
+     public function recommend () {
         $products = Product::where('user_id', '!=', auth()->id())->get();
-        return view('product_mylist', compact('products'));
+        return view('top', compact('products'));
+    }
+
+    public function mylist () {
+        return redirect()->route('mylist', ['tab' => 'mylist']);
     }
 
     public function item_search(Request $request) {
@@ -47,7 +62,7 @@ class ItemController extends Controller
             )->get();
             return view('product_mylist', compact('products'));
         }else{
-            return redirect()->route('item');
+            return redirect()->route('mylist');
         }
     }
 }

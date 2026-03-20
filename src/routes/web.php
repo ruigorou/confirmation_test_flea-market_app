@@ -9,6 +9,7 @@ use App\Http\Controllers\SellController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ProductPurchaseController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 //----------未ログイン----------
@@ -25,13 +26,16 @@ Route::post('/login', [UserLoginController::class, 'login'])->name('login');
 
 //-----------------ログイン後-------------------
 Route::middleware('auth')->group(function () {
+    route::post('/', [ItemController::class, 'mylist'])->name('mylist');
+
+    //-------item------------
+    Route::get('/recommend', [ItemController::class, 'recommend'])->name('recommend');
+    
+    Route::get('/item', [ItemController::class, 'item_search'])->name('item.search');
+
     //--------- profile -------
     Route::get('/mypage/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::post('/mypage/profile', [ProfileController::class, 'profile_create'])->name('profile.create');
-
-    //-------item------------
-    Route::get('/item', [ItemController::class, 'index'])->name('item');
-    Route::post('/item', [ItemController::class, 'item_search'])->name('item.search');
 
     //----------listing---------
     Route::get('/sell', [SellController::class, 'listing'])->name('sell');
@@ -49,9 +53,10 @@ Route::middleware('auth')->group(function () {
     Route::post('purchase/address/{item_id}', [ProductPurchaseController::class, 'address_update'])->name('address.update');
 
     //--------like -----------
-    Route::post('item/{item_id}', [LikeController::class, 'toggle'])
-    ->middleware('auth')
-    ->name('products.like');
+    Route::post('/like/{product}/toggle', [LikeController::class, 'toggle']);
+
+    //--------comments---------
+    Route::post('/comment', [CommentController::class, 'comment_create']);
 });
 
 // // プロフィール画面に移行

@@ -5,19 +5,18 @@
 @section('content')
     <div class="productlist__nav">
         <div>
-            おすすめ
+            <a class="recommend" href="{{ route('recommend') }}">おすすめ</a>
         </div>
         <div>
-            マイリスト
+            <a class="mylist" href="{{ route('mylist', ['tab' => 'mylist']) }}">マイリスト</a>
         </div>
     </div>
-    <form action=""></form>
         <div class="product_list">
             @foreach ($products as $product)
                 <div class="product_card">
                     <div class="product_card__img">
                         <a href="{{ route('item.detail', $product->id) }}">
-                            <img src="{{ asset('/storage/image/' . $product->image) }}" alt="">
+                            <img src="{{ asset('/storage/image/' . $product->image) }}" alt="商品画像">
                         </a>
                     </div>
                     <div class="product_card__title">

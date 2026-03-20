@@ -3,12 +3,15 @@
     <link rel="stylesheet" href="{{ asset('css/top.css') }}">
 @endsection
 @section('content')
-    <div class="link-group">
+   <div class="productlist__nav">
         <div>
-            <a class="recommend" href="">おすすめ</a>
+            <a class="recommend" href="{{ route('recommend') }}">おすすめ</a>
         </div>
         <div>
-            <a class="my-list" href="">マイリスト</a>
+            <form action="{{ route('mylist') }}" method="post">
+                @csrf
+                <button class="mylist">マイリスト</button>
+            </form>
         </div>
     </div>
     <div class="product_list">

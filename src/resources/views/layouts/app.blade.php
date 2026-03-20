@@ -12,15 +12,15 @@
 <body>
     <header class="header">
         <div class="header__nav-logo">
-            <a href="/item">
+            <a href="{{ route('mylist') }}">
                 <input type="image" src="{{ asset('image/COACHTECHヘッダーロゴ.png') }}" alt="ロゴ">
             </a>
         </div>
         @auth
             <div class="search">
-                <form action="{{ route('item.search') }}" method="post">
+                <form action="{{ route('item.search') }}" method="get">
                     @csrf
-                    <input class="search__box" name="keyword" type="text" placeholder="なにをお探しですか？">
+                    <input class="search__box" name="keyword" type="text" placeholder="なにをお探しですか？" value="{{ old('keyword', request('keyword') ) }}">
                 </form>
             </div>
             <div class="headerlink-group">

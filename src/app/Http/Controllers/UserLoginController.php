@@ -11,7 +11,7 @@ class UserLoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/item');
+            return redirect()->route('mylist', ['tab' => 'mylist']);
         }
 
         return view('auth.login');

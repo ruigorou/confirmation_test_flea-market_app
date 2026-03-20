@@ -3,7 +3,6 @@
     <link rel="stylesheet" href="{{ asset('css/product_purchase.css') }}">
 @endsection
 @section('content')
-    <h1>商品購入画面</h1>
     <div class="purchase-content">
         <div class="left-column-content">
             <div class="product-group">

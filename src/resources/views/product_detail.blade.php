@@ -18,12 +18,29 @@
                 <p>¥<span class="product-content__price">{{ number_format($product->price) }}</span> (税込)</p>
             </div>
             <div class="logo-group">
-                <div>
-                    <img class="logo-group__item" src="{{ asset('image/ハートロゴ_デフォルト.png') }}" alt="ハートロゴ">
+               <div>
+                    <form action="/like/{{ $product->id }}/toggle" method="POST">
+                        @csrf
+                        <label style="cursor:pointer">
+                            <input class="like-check" type="checkbox" name="liked" value="1"
+                                {{ $product->isLikedByUser() ? 'checked' : '' }}
+                                onchange="this.form.submit()">
+                            @if($product->isLikedByUser())
+                                 <img src="{{ asset('image/ハートロゴ_ピンク.png') }}" width="30" onclick="this.previousElementSibling.click()">
+                            @else
+                                <img src="{{ asset('image/ハートロゴ_デフォルト.png') }}" width="30" onclick="this.previousElementSibling.click()">
+                            @endif
+                        </label>
+                    </form>
                     <p>{{ $product->likes_count }}</p>
                 </div>
                 <div>
-                    <img class="logo-group__item" src="{{ asset('image/ふきだしロゴ.png') }}" alt="吹き出し">
+                    <div>
+                        <img class="logo-group__item" src="{{ asset('image/ふきだしロゴ.png') }}" alt="吹き出し">
+                    </div>
+                    <div>
+                        <p>{{ $product->comments_count }}</p>
+                    </div>
                 </div>
             </div>
             <div>
@@ -65,25 +82,40 @@
                 </div>
             </div>
             <div>
-                <h2>コメント(<span>1</span>)</h2>
+                <h2>コメント(<span>{{ $product->comments_count }}</span>)</h2>
             </div>
             <div class="admin-group">
                 <div class="admin-image__box">
-                    <img  src="" alt="">
+                    @auth
+                        <img class="image_output" id="image_output" src="{{ $user->profile?->image ? asset('storage/image/' . $user->profile->image) : ''}}">
+                    @endauth
                 </div>
                 <div>
-                    <p class="admin-name">admin</p>
+                    <p class="admin-name">
+                        @auth
+                            {{ $user->name }}
+                        @endauth
+                    </p>
                 </div>
             </div>
             <div>
                 <p class="coment-title">商品へのコメント</p>
             </div>
-            <div>
-                <textarea class="coment-area" name="" id=""></textarea>
-            </div>
-            <div>
-                <button class="coment-submit">コメントを送信する</button>
-            </div>
+            <form action="/comment" method="post">
+                @csrf
+                <div>
+                    <textarea class="coment-area" name="comment">{{ old('comment') }}</textarea>
+                </div>
+                <div class="form__error">
+                    @error('comment')
+                        {{ $message }}
+                    @enderror
+                </div>
+                <div>
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <button class="coment-submit" type="submit">コメントを送信する</button>
+                </div>
+            </form>
         </div>
     </div>
 @endsection
