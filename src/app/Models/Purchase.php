@@ -5,13 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Like extends Model
+class Purchase extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 
-        'product_id'
+        'user_id',
+        'product_id',
+        'price',
+        'payment',
+        'shipping_name',
+        'shipping_postal_code',
+        'shipping_address',
+        'shipping_building',
     ];
 
     public function user()

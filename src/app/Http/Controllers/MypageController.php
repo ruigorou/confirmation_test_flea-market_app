@@ -6,14 +6,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\Like;
+use App\Models\Purchase;
 
 class MypageController extends Controller
 {
     public function listed_item(Request $request) {
         $page = $request->query('page');
         $user = Auth()->user();
-        $products = Product::where('user_id', $user->id)->get();
-        return view('mypage', compact('user', 'products'));
+        //------sell-----
+        if($page === 'sell') {
+            $products = Product::where('user_id', $user->id)->get();
+        }
+        //------buy------
+        if($page === 'buy') {
+           $products = Product::whereHas('purchases', function ($query) use ($user) {
+                $query->where('user_id', $user->id); // 自分が購入したもの
+            })->with(['purchases' => function($q) use ($user) {
+                $q->where('user_id', $user->id); // 自分の購入情報だけ
+            }])->get();
+        }
+
+        return view('mypage', compact('user', 'products', 'page'));
     }
     public function  search(Request $request) {
         $user_id = auth()->user()->id;

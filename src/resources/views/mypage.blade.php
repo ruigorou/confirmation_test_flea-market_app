@@ -22,8 +22,8 @@
         </div>
         <div class="item-tabs__tab--buy">
             <div class="item-tabs__tab--sell">
-            <a class="item-tabs__tab--sell-buy" href="{{ route('mypage', ['page' => 'buy']) }}">購入した商品</a>
-        </div>
+                <a class="item-tabs__tab--sell-buy" href="{{ route('mypage', ['page' => 'buy']) }}">購入した商品</a>
+            </div>
         </div>
     </div>
      <div class="product_list">
@@ -33,6 +33,9 @@
                         <a href="{{ route('item.detail', $product->id) }}">
                             <img src="{{ asset('/storage/image/' . $product->image) }}">
                         </a>
+                         @if($page === 'buy')
+                            <span class="label-sold">SOLD</span>
+                        @endif
                     </div>
                     <div class="product_card__title">
                         <p>{{ $product->product_name }}</p>

@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
 
     //---------- Product Purchase --------
     Route::get('/purchase/{product_id}', [ProductPurchaseController::class, 'purchase'])->name('product.purchase');
+    Route::post('/purchase/{product_id}', [ProductPurchaseController::class, 'purchase_procedure'])->name('purchase.procedure');
 
     //---------- `delivery address ----------
     Route::get('purchase/address/{item_id}', [ProductPurchaseController::class, 'delivery_address'])->name('purchase.address');

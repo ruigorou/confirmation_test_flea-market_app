@@ -37,7 +37,7 @@
         <div>
             <div class="address-form__group">
                 <label class="address-form__label">建物名</label>
-                <input class="address-form__input" type="text" name="building" value="{{ old('building', $user->DeliveryAddresses->first()->building ?? $user->profile->building) }}">
+                <input class="address-form__input" type="text" name="building" value="{{ old('building', $user->deliveryAddresses->first()->building ?? $user->profile->building) }}">
             </div>
             <div class="form__error">
                 @if($errors->has('building'))

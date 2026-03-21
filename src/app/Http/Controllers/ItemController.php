@@ -10,15 +10,21 @@ use Illuminate\Support\Facades\Auth;
 class ItemController extends Controller
 {
     //---------未ログイン----------
-    public function top () {
+    public function top (Request $request) {
         $products = Product::all();
+        $page = $request->query('page');
+        $user = auth()->user();
         if(auth()->check()) {
             //------login---------
-            $user = auth()->user();
             $likedProductIds = Like::where('user_id', $user->id)
             ->pluck('product_id');
-            $products = Product::whereIn('id', $likedProductIds)->get();
-            return view('product_mylist', compact('products'));
+            
+            $products = Product::whereIn('id', $likedProductIds)
+            ->with(['purchases' => function($query) use ($user) {
+                $query->where('user_id', $user->id); // 自分が購入した情報だけ
+            }])
+            ->get();
+            return view('product_mylist', compact('products', 'page'));
         }
         return view('top', compact('products'));
     }
