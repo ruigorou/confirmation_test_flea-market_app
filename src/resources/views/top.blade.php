@@ -21,6 +21,9 @@
                     <a href="{{ route('item.detail', $product->id)}}">
                         <img src="{{ asset('/storage/image/' . $product->image) }}">
                     </a>
+                    @if($product->purchases->isNotEmpty())
+                        <span class="label-sold">SOLD</span>
+                    @endif
                 </div>
                 <div class="product_card__title">
                     <p>{{ $product->product_name }}</p>

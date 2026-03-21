@@ -52,9 +52,13 @@ class ItemController extends Controller
     }
     
     //--------ログイン後----------
-     public function recommend () {
-        $products = Product::where('user_id', '!=', auth()->id())->get();
-        return view('top', compact('products'));
+     public function recommend (Request $request) {
+        $page = $request->query('page');
+        $user = auth()->user();
+        $products = Product::where('user_id', '!=', auth()->id())
+        ->with('purchases') // 商品の購入履歴を全て読み込む
+        ->get();
+        return view('top', compact('products', 'page'));
     }
 
     public function mylist () {
