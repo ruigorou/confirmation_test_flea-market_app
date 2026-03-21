@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddressRequest;
+use App\Models\DeliveryAddress;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\Profile;
+
 
 class ProductPurchaseController extends Controller
 {
@@ -25,13 +25,15 @@ class ProductPurchaseController extends Controller
 
     public function address_update (AddressRequest $request) {
         $user_id = Auth()->user()->id;
-        $user = User::find($user_id);
-        $profile = Profile::where('user_id', $user->id);
-        $profile->update([
+        User::find($user_id);
+        DeliveryAddress::updateOrCreate(
+            ['user_id' => $user_id],
+            [
                 'post' => $request->post,
                 'address' => $request->address,
                 'building' => $request->building
-            ]);
+            ]
+        );
 
         return redirect()->route('product.purchase', ['product_id' => $request->item_id]);
     }

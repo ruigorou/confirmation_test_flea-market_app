@@ -14,7 +14,7 @@
                      <label class="address-form__label">郵便番号</label>
                 </div>
                 <div>
-                     <input class="address-form__input" name="post" type="text" value="{{ old('post', $user->profile->post) }}">
+                     <input class="address-form__input" name="post" type="text" value="{{ old('post', $user->deliveryaddresses->first()->post ?? $user->profile->post) }}">
                 </div>
             </div>
             <div class="form__error">
@@ -26,7 +26,7 @@
         <div>
             <div  class="address-form__group">
                 <label class="address-form__label">住所</label>
-                <input class="address-form__input" name="address" type="text" value="{{ old('address', $user->profile->address) }}">
+                <input class="address-form__input" name="address" type="text" value="{{ old('address', $user->deliveryaddresses->first()->address ?? $user->profile->address) }}">
             </div>
             <div class="form__error">
                 @if($errors->has('address'))
@@ -37,7 +37,7 @@
         <div>
             <div class="address-form__group">
                 <label class="address-form__label">建物名</label>
-                <input class="address-form__input" type="text" name="building" value="{{ old('building', $user->profile->building) }}">
+                <input class="address-form__input" type="text" name="building" value="{{ old('building', $user->DeliveryAddresses->first()->building ?? $user->profile->building) }}">
             </div>
             <div class="form__error">
                 @if($errors->has('building'))

@@ -40,8 +40,8 @@
                     </div>
                 </div>
                 <div class="shipping__address">
-                    <p class="shipping__post">〒 {{ $user->profile->post }}</p>
-                    <p class="shipping__detail">{{ $user->profile->address }}{{ $user->profile->building }}</p>
+                    <p class="shipping__post">〒 {{ $user->deliveryaddresses->first()->post ?? $user->profile->post }}</p>
+                    <p class="shipping__detail">{{ $user->deliveryaddresses->first()->address ?? $user->profile->address }}{{ $user->deliveryaddresses->first()->building ?? $user->profile->building }}</p>
                 </div>
             </div>
         </div>

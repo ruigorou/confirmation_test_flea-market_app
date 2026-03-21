@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Profile extends Model
+class DeliveryAddress extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'image',
         'post',
         'address',
         'building',
@@ -20,5 +19,4 @@ class Profile extends Model
     public function users() {
         return $this->belongsTo(User::class);
     }
-
 }
